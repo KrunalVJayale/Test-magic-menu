@@ -1,0 +1,14 @@
+{
+    "name": "Magic Menu",
+    "short_name": "Magic",
+    "start_url": "/admin/tables",
+    "theme_color": "#000",
+    "display": "fullscreen",
+    "icons": [
+      {
+        "src": "/images/Designer.png",
+        "type": "image/png"
+      }
+    ],
+    "scope": "/"
+  }
