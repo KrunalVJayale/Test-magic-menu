@@ -1,0 +1,98 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<%- include("../includes/navbar.ejs") %>
+<%- include("../includes/masterFooter.ejs") %>
+
+
+<head>
+    <link rel="stylesheet" href="/css/adminBillPage.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<div class="pageTitleDiv"><h1><b> <%= item.owner.hotelname%></b></h1></div> 
+
+<!-- < orders.forEach((order) => { %> -->
+<div class="master-div">
+    <div class="top-div">
+      <div class="name-number-div">
+        <p class="top-div-content">Name: <%=item.customername%></p>
+        <%if(item.mob_number){%>
+          <p class="top-div-content">Contact: <%=item.mob_number%></p>
+        <% } %>
+        <p class="top-div-content">Invoice: #<%=item.invoice%></p>
+      </div>
+      
+        <div class="time-date-div">
+          <p class="top-div-content">Paid on: <%=item.paid_date%></p>
+          <p class="top-div-content">Paid at: <%=item.paid_time%></p>
+          <p class="top-div-content">Table no: <%= item.tableno %> </p>
+        </div>
+    </div>
+    
+    <div class="middle-div">
+      <div class="fixed-div">
+          <div class="item-srNo fixed-div-div"><p class="fixed-div-content">Sr.</p></div>
+          <div class="item-name fixed-div-div"><p class="fixed-div-content">Item Name</p></div>
+          <div class="item-price fixed-div-div"><p class="fixed-div-content">Price</p></div>
+          <div class="item-qty fixed-div-div"><p class="fixed-div-content">Qty</p></div>
+          <div class="item-total fixed-div-div"><p class="fixed-div-content">Bill</p></div>
+      </div>
+    </div>
+    
+    <div class="bottom-div">
+      <% orders.forEach((order, index) => { %>
+          <div class="dynamic-div">
+            <div class="item-srNo dynamic-div-div"><p class=" dynamic-div-content"><%= index + 1 %></p></div>
+            <div class="item-name dynamic-div-div"><p class="dynamic-div-content"><%= order.name %></p></div>
+            <div class="item-price dynamic-div-div"><p class=" dynamic-div-content"><%= order.price %></p></div>
+            <div class="item-qty dynamic-div-div"><p class=" dynamic-div-content">x <%= order.qty %></p></div>
+            <div class="item-total dynamic-div-div"><p class=" dynamic-div-content"><%= order.qty*order.price %></p></div>
+          </div>  
+      <% }) %>
+    </div>
+    
+    <div class="bill-price-div">
+      <p class="totalItems"> Total items : <b><%=orders.length%></b> </p>
+      <p class="totalValue"> Total : <b id="price">&#8377;</b></p>
+    </div>
+    
+    <p class = "brand-name">Powered By : Magic Menu</p>
+    <!-- <button id="download-pdf">Download PDF</button> -->
+</div>
+<!-- < }) %> -->
+
+
+
+<script defer>
+    let items = <%- JSON.stringify(orders) %>;
+      if(items.length){
+          const billValue = []; 
+          for(item of items){
+          billValue.push(item.price*item.qty)
+      }
+      let price = billValue.reduce((accumulator, current) => accumulator + current);
+      let value = document.getElementById("price");
+      value.innerText = price;
+      }
+
+</script>
+
+
+
+<!-- <script>
+  document.getElementById('download-pdf').addEventListener('click', () => {
+    fetch('/generate-pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.arrayBuffer())
+    .then(pdfBuffer => {
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(new Blob([pdfBuffer], { type: 'application/pdf' }));
+      link.download = 'example.pdf';
+      link.click();
+    })
+    .catch(error => console.error(error));
+  });
+</script> -->

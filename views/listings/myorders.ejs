@@ -1,0 +1,135 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<%- include("../includes/navbar.ejs") %>
+<%- include("../includes/masterFooter.ejs") %>
+<%- include("../includes/flash.ejs") %>
+
+<head>
+    <title>Orders</title>
+    <link rel="stylesheet" href="/css/myorderPage.css">
+    <!-- <meta http-equiv="refresh" content="15"> -->
+</head>
+
+
+<div class="title-button-div">
+    <h3 class="myorder-title"> Your Orders  <i class="fa-solid fa-box-open"></i></h3>
+    <a href="/history" class="btn btn-secondary get-bill-button">Get Bill</a>
+</div>
+
+
+<% if( !items.length ){ %>
+    <div class=" notify-div mt-3">
+        <div class="card mt-3" >
+            <img src="/images/orders.jpg" class="card-img-top" alt="No order image">
+            <div class="card-body mt-2">
+                <h5 class="card-title text-primary"> <b>No Orders</b></h5>
+                <p class="card-text mt-3 text-primary"><i>You didn't make any order yet!</i> </p>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<% if( items.length ){ %>
+    <p class="note">Order will be served within 10 mins after confirmation</p>
+<div class="master-div">
+    <% for(item of items){ %>
+
+        <div class="myorder-card">
+            <div class="img-div">
+                <img src="<%= item.image.url %>" alt="" class="myorder-card-img">
+            </div>
+
+            <div class="content-div">
+
+                <div class="item-name-div"><p class="card-text item-name"><%= item.name %></p></div>
+
+                <div class="price-qty-div"> 
+                    <p class="card-text item-price">Price : &#8377; <%= item.price.toLocaleString("en-IN") %></p>
+                    <p class="card-text item-qty"> Qty : <%= item.qty %> </p>
+                </div>
+            
+                <div class="order-info-div">
+                    <p class="order-customer">By:- <%= item.customername %></p>
+                    <% if(item.status === "Confirmed"){ %>
+                        <%if(item.confirmed_at){%>
+                            <p class="order-time">Confirmed at <%= item.confirmed_at %></p>  
+                        <% } %>
+
+                        <%if(!item.confirmed_at){%>
+                            <p class="order-time">Confirmed at <%= item.created_at %></p> 
+                        <% } %>
+
+                    <% } %>
+
+                    <% if(item.status != "Confirmed"){ %>
+                        <p class="order-time">On : <%= item.created_at %></p>
+                    <% } %>
+                    
+                </div>
+                <% if(item.status != "Confirmed" && item.status != "Rejected"){ %>
+                <div class="buttons-div">
+                    <form method="post" id="cancelForm" action="/myorders/<%= item._id %>/cancel?_method=DELETE">
+                        <button class="btn myorder-cancel-btn myButton" id="<%= item._id %>">Cancel</button>
+                        <audio id="remove-sound" src="/sounds/small_not_tone.wav" type="audio/mp3" controls="false" style="display: none;"></audio> 
+                    </form>
+                </div>
+                <% } %>
+
+                <% if(item.status === "Confirmed"){ %> 
+                    <div class="buttons-div">
+                       <b><p class="card-text" style="color: green;">Order is Confirmed <i class="fa-solid fa-circle-check"></i></p></b>
+                    </div>
+                <% } %>
+                <% if(item.status === "Rejected"){ %> 
+                    <div class="buttons-div">
+                       <b><p class="card-text" style="color: #876E4B;">Sorry!, Your order cannot be served <i class="fa-solid fa-ghost"></i></p></b>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+    <% } %>
+</div>
+<% } %>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+
+<script>
+    
+    document.querySelectorAll('.myButton').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        document.getElementById("remove-sound").play();
+        e.target.style.display = 'none';
+      });
+    });
+
+    const socket = io();
+
+    const cancelForm = document.getElementById('cancelForm');
+    cancelForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        setTimeout(()=>{
+            socket.emit("Cancel-Order", {owner:hotelID});
+            cancelForm.submit();
+        },1000);
+    });    
+
+//     socket.on("Bill_Generated",(data)=>{
+//     if(data){
+//       setTimeout(()=>{
+//         console.log(data)
+//         // window.location.reload(true);
+//       },1000) 
+//     }
+//   });
+
+    socket.on("Confirm_Reject",(data)=>{
+    if(data.owner = hotelID){
+      setTimeout(()=>{
+        window.location.reload(true)
+      },1500) 
+    }
+  });
+
+
+  
+  </script>
