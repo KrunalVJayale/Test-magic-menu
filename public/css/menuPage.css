@@ -1,0 +1,137 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+
+.sub-cat-heading{
+    font-family: "Nerko One", cursive;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 5vw;
+    margin: 2rem 2rem 0 ;
+}
+
+.heading-2{
+    font-size: 7vw;
+}
+
+.bannerDiv{
+    width: 90vw;
+    margin: 2rem auto 0;
+}
+.bannerImage{
+    width: 90vw;
+    height: 45vw;
+    border-radius: 1rem;
+}
+
+.top-scroll-div{
+    width: 100%;
+    padding: 0.85rem 0.5rem ;
+    overflow: auto;
+    white-space: nowrap;
+}
+.top-scroll-div::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.sub-cat-anchor{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    margin-right: 7px;
+    width: 22.5vw;
+    height: 22.5vw;
+    text-decoration: none;
+    /* border: 2px solid red; */
+    /* margin-right: 1rem; */
+}
+
+.sample{
+    border-radius: 20px;
+    border: 1px solid #00000020;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+
+.sub-cat-div{
+    width: 22.5vw;
+    height: 22.5vw;
+    background-color:transparent;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: 0.5rem; */
+    border-radius:15px;
+}
+.sub-cat-image-div{
+    width: 18vw;
+    height: 16.5vw;
+    display: inline-flex;
+    justify-content: center;
+}
+.sub-cat-image{
+    width: 18vw;
+    height: 18vw;
+    border-radius:15px ;
+    mix-blend-mode: multiply;
+}
+.sub-cat-text{
+    margin: 0;
+    font-size: 12px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+
+@media screen and (min-width:480px) {
+    .bannerDiv{
+        max-width: 30rem;
+        max-height:14rem ;
+    }
+    .bannerImage{
+        max-width: 30rem;
+        max-height: 14rem;
+    }
+    .sub-cat-heading{
+        font-size: 30px;
+    }
+    .heading-2{
+        font-size: 35px;
+    }
+    .sub-cat-anchor,.sub-cat-div{
+        width: 23vw;
+        height: 23vw;
+    }
+    .sub-cat-image-div,.sub-cat-image{
+        width: 17vw;
+        height: 17vw;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .sub-cat-anchor,.sub-cat-div{
+        width: 17rem;
+        height: 17rem;
+    }
+    .sub-cat-image-div,.sub-cat-image{
+        width: 14rem;
+        height: 14rem;
+    }
+}
+
+
+.warning{
+    display: none;
+}
+@media screen and (max-width:280px) {
+    .warning{
+        display: block;
+    }
+    .bannerDiv,.top-scroll-div,.sub-cat-heading,.master-div{
+        display: none;
+    }
+}
