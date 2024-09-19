@@ -1,0 +1,46 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<%- include("../includes/adminNav.ejs") %>
+<%- include("../includes/flash.ejs") %>
+<%- include("../includes/adminFooter.ejs") %>
+
+<div class="row mt-3" style="max-width: 100%;">
+    <div class="col-8 offset-2 mb-3">
+        <h1>Profile</h1>
+        <h4 class="admin-page-title-id" id="idAdmin">Owner ID:- <%= currUser._id %></h4>
+        <% if(!subscription){%>
+            <button class="btn btn-primary" onclick="main();">Get Notified</button>  
+        <% } %>
+        
+        <form method="POST" action="/admin/profile/edit?_method=PUT"  class="needs-validation" novalidate>
+
+            <div class="mb-3">
+                <label for="name" class="form-label">User Name</label>
+                <input name="user[name]" value="<%= user.name%>" maxlength="17" type="text" class="form-control" id="name" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Hotel Name</label>
+                <input name="user[hotelname]" class="form-control" id="description" maxlength="17" value="<%= user.hotelname %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Mobile Number</label>
+                <input name="user[username]" class="form-control" id="username" type="text" maxlength="10" value="<%= user.username %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input name="user[location]" class="form-control" id="address" maxlength="50" value="<%= user.location %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input name="user[email]" class="form-control" id="email" value="<%= user.email %>" required>
+            </div>
+            
+            <button class="btn btn-dark edit-btn">Edit</button>
+        </form>
+    </div>
+</div>
+<script src="/js/Notification.js"></script>
+<!-- < include("../includes/footer.ejs") %> -->

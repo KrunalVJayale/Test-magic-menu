@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<%- include("../includes/adminNav.ejs") %>
+<%- include("../includes/flash.ejs") %>
+<%- include("../includes/adminFooter.ejs") %>
+<head>
+  <title>Admin Show</title>
+  <link rel="stylesheet" href="/css/adminshowPage.css">
+</head>
+
+
+<div class="regretMessage">
+  <p>Sorry Minimum width required is 280 pixels <br>
+  Will be available soon !
+  </p>
+</div>
+
+
+  <div class="master-div">
+
+    <div class="admin-show-card">
+        <img 
+        src="<%= item.image.url %>" class="admin-show-card-img" alt="loading">
+        
+        <div class="content-div">
+          <div class="name-price-div">
+            <div class="item-name-div"><p class="item-name"><%=item.name %></p></div>
+            <div class="item-price-div"><p class="item-price"> &#8377; <%= item.price.toLocaleString("en-IN") %></p></div>
+        </div>
+        
+        <div class="item-info-div"><p class="item-info" name="info"><%= item.info %></p></div> 
+          
+          <% if(item.owner.equals(currUser)){ %>
+            <div class="buttons-div">
+              <a href="/admin/<%= item._id %>/edit" class="btn admin-edit-btn">Edit</a>
+              <a href="/admin/<%= item._id %>/delete" class="btn admin-delete-btn">Delete</a>
+              <% if(item.promote === "Yes"){ %>
+                <a href="/admin/<%= item._id %>/demote" class="btn admin-promote-btn btn-danger">Demote</a>
+                <% } %>
+              <% if(item.promote != "Yes"){ %>
+                <a href="/admin/<%= item._id %>/promote" class="btn admin-promote-btn btn-primary">Promote</a>
+              <% } %>
+              
+            </div>
+          <% } %>
+          
+        </div>
+    </div>
+  </div>
+  
