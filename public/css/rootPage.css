@@ -1,0 +1,281 @@
+.masterDiv{
+    width: 100%;
+    padding: 0 2vw 5vw;
+    align-items: center;
+    justify-content: center;
+}
+.childDiv{
+    height: fit-content;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    gap: 5rem;
+    margin: 10rem 0;
+}
+.heroDiv{
+    height: 100vh;
+    margin-top: 0;
+}
+.heroImageDiv{
+    animation: right-animation 1.5s;
+}
+.heroImage{
+    width: 35vw;
+    border-radius: 50%;
+    box-shadow:0px 5px 130px 5px #ee949b;
+    animation:rotate-animation 1.5s linear;
+}
+.textDiv{
+    width: 40vw;
+}
+
+.h1Text{
+    background: linear-gradient(250deg, #f32170,#eedd44, #cf23cf,#00DBDE ); 
+    -webkit-text-fill-color: transparent; 
+    -webkit-background-clip: text;
+    font-weight: 900;
+    font-size: 3vw;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.h3Text{
+    font-weight: 400;
+}
+.pText{
+    margin-top: 15%;
+}
+.reqBtn{
+    color: #fff;
+    font-weight: 600;
+    width:max-content !important;
+}
+.reqBtn2{
+    display: none;
+}
+
+.rootImage{
+    width: 17vw;
+    border-radius: 15px;
+}
+
+.qrImage{
+    width: 25vw;
+}
+
+.center{
+    margin: 0;
+    text-align: center;
+    font-weight: 900;
+    font-size: 20px;
+}
+.iconCrown{
+    color: #ff0000;
+}
+
+.portfolioImage{
+    width: 15vw;
+    margin-bottom: 2rem;
+}
+
+.imageDiv{
+    display: block;
+    text-align: center;
+}
+@media screen and (min-width: 1000px){
+    .pText{
+        font-size: 14px;
+    }
+    .portfolioImage{
+        width: 13vw;
+    }
+}
+
+@media screen and (min-width: 1600px){
+    .h1Text{
+        font-size: 50px;
+    }
+    .pText{
+        font-size: 16px;
+    }
+    .heroImage{
+        width: 570px;
+    }
+    .rootImage{
+        width: 250px;
+    }
+    .qrImage{
+        width: 400px;
+    }
+    .portfolioImage{
+        width: 225px;
+    }
+}
+
+
+
+
+@media screen and (max-width: 800px){
+    .childDiv{
+        display: block;
+        margin-top: 5rem;
+    }
+    .heroDiv{
+        margin: 0;
+        padding-top: 5rem;
+    }
+    .textDiv{
+        width: 100%;
+        text-align: center;
+    }
+    .h1Text{
+        font-size: 24px;
+    }
+    .h3Text{
+        font-size: 20px;
+    }
+    .pText{
+        margin-top: 5%;
+    }
+    .imageDiv{
+        display: block;
+        text-align: center;
+    }
+    .heroImage{
+        margin-top: 10%;
+        width:230px ;
+    }
+    .rootImage{
+        margin-top: 5%;
+        width: 200px;
+    }
+    .qrImage{
+        width: 250px;
+    }
+    .reqBtn1{ 
+        display: none;
+    }
+    .reqBtn2{
+        display:block;
+        margin: 5rem auto;
+    }
+} 
+
+@keyframes right-animation{
+    0% { margin-left: -100%; }
+    100% { margin-left: initial; }
+}
+
+@keyframes left-animation{
+    0% { margin-left: -100%; }
+    100% { margin-left: initial; }
+}
+@keyframes rotate-animation{
+    0%{transform:rotate(90deg);}
+    100%{transform: rotate(0deg);}
+}
+
+
+
+/* New Code */
+
+/* From Uiverse.io by guilhermeyohan */ 
+.login-box {
+    text-align: center;
+    margin:1.5rem auto;
+    width: 400px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.987);
+    box-sizing: border-box;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.321);
+    border-radius: 10px;
+  }
+  .login-box h6{
+    margin-bottom:2rem;
+    font-size: 20px;
+  }
+  
+  .login-box .user-box {
+    position: relative;
+  }
+  
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    background: transparent;
+  }
+  
+  .login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000000;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #000000;
+    font-size: 12px;
+  }
+  
+  .send-button{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #000000;
+    font-size: 16px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border:none;
+    background: transparent;
+  }
+  
+  .send-button:hover {
+    background: #03f40f;
+    color: #000000;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03f40f,
+                0 0 25px #03f40f,
+                0 0 50px #03f40f,
+                0 0 100px #03f40f;
+  }
+  
+  .send-button span {
+    position: absolute;
+    display: block;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+  
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  .send-button span:nth-child(1) {
+    bottom: 2px;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03f40f);
+    animation: btn-anim1 2s linear infinite;
+  }
